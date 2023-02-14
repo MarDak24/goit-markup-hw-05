@@ -671,6 +671,8 @@ p {
   color: var(--white-studio-color);
   background-color: var(--active-color);
 
+line-height: 1.5;
+
   opacity: 0;
 
   transform: translateY(100%);
