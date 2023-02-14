@@ -21,11 +21,11 @@
       <a href="./index.html" class="header-link"><span class="page">Web</span>Studio</a>
       <nav class="main-nav">
         <ul class="site-nav">
-          <li class="item"><a href="./index.html" class="link">Studio</a></li>
+          <li class="item"><a class="link current" href="./index.html">Studio</a></li>
           <li class="item">
-            <a href="./portfolio.html" class="link">Portfolio</a>
+            <a class="link" href="./portfolio.html">Portfolio</a>
           </li>
-          <li class="item"><a href="" class="link">Contacts</a></li>
+          <li class="item"><a class="link" href="" class="link">Contacts</a></li>
         </ul>
       </nav>
 
@@ -48,8 +48,7 @@
 
         <h1 class="hero-title">Effective Solutions for Your Business</h1>
 
-
-        <button type="button" class="button button-studio">
+        <button class="button button-studio" type="button" data-modal-open>
           Order Service
         </button>
       </div>
@@ -392,6 +391,15 @@
 
     </div>
   </footer>
+
+  <div class="modal-overlay is-hidden" data-modal>
+    <div class="modal">
+      <form action="" class="contacts-form"></form>
+      <button class="close-btn" type="button" data-modal-close></button>
+    </div>
+  </div>
+
+  <script src="./js/modal.js"></script>
 </body>
 
 </html>

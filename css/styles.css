@@ -10,6 +10,13 @@
   --hover-button-portfolio-background: #404bbf;
 
   --customers-icon-color: #8e8f99;
+
+  /* Cubic */
+  --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Modal */
+  --modal-bg-color: #fcfcfc;
+  --window-bg-color: rgba(46, 47, 66, 0.4);
 }
 
 body {
@@ -126,44 +133,6 @@ p {
   margin-right: 40px;
 }
 
-/* спроба зробити підкреслення активної сторінки */
-
-.site-nav .item {
-  position: relative;
-}
-
-.site-nav .link::after {
-  content: '';
-
-  position: absolute;
-  left: 0;
-  bottom: 0;
-
-  display: block;
-  height: 5px;
-  background-color: red;
-
-  opacity: 1;
-  transform: scaleX(1);
-  transition: transform 520ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* .site-nav .link:active::after {
-  content: '';
-
-  position: absolute;
-  left: 0;
-  bottom: 0;
-
-  display: block;
-  width: 100%;
-  height: 5px;
-  background-color: red;
-
-  opacity: 1;
-} */
-
 .address {
   margin-left: auto;
   font-style: normal;
@@ -174,9 +143,7 @@ p {
 }
 
 .address-link {
-  transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms var(--transition-function);
 
   display: block;
   padding-top: 24px;
@@ -253,12 +220,12 @@ p {
 }
 
 .button-studio {
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--transition-function);
 
   padding: 16px 32px;
   border-radius: 4px;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
 .button-studio:hover,
@@ -339,9 +306,7 @@ p {
 }
 
 .social-list .link-icon {
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--transition-function);
 
   display: flex;
   justify-content: center;
@@ -372,9 +337,9 @@ p {
 }
 
 .filter-button {
-  transition-property: color, background-color, box-shadow;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--transition-function),
+    color 250ms var(--transition-function),
+    box-shadow 250ms var(--transition-function);
 
   padding: 12px 24px;
   background-color: var(--white-studio-color);
@@ -413,13 +378,12 @@ p {
 }
 
 .card-link {
-  transition-property: box-shadow;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-  display: block;
+  display: inline-block;
+  color: var(--secondary-color);
 
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
+
+  transition: box-shadow 250ms var(--transition-function);
 }
 
 .card-list .card-link:hover,
@@ -440,9 +404,7 @@ p {
 }
 
 .link {
-  transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms var(--transition-function);
 
   display: block;
   padding-top: 24px;
@@ -587,9 +549,7 @@ p {
 }
 
 .team-icon .link-icon {
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--transition-function);
 
   display: flex;
   justify-content: center;
@@ -622,9 +582,8 @@ p {
 }
 
 .customers-icon .link-icon {
-  transition-property: fill, border;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill 250ms var(--transition-function),
+    border 250ms var(--transition-function);
 
   display: flex;
   justify-content: center;
@@ -642,4 +601,97 @@ p {
 .customers-icon .link-icon:focus {
   fill: var(--hover-button-portfolio-background);
   border: 1px solid var(--hover-button-portfolio-background);
+}
+
+/* ДЗ 5 (Анімації) */
+
+.site-nav .current {
+  position: relative;
+}
+
+.site-nav .current::after {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  content: '';
+  width: 100%;
+  height: 4px;
+  background-color: var(--hover-button-portfolio-background);
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+/* Portfolio card overlay */
+
+.card-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.paragraph-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 40px 32px;
+  transform: translateY(100%);
+  color: var(--white-studio-color);
+  background-color: var(--active-color);
+  opacity: 0;
+  transition: transform 250ms var(--transition-function),
+    opacity 500ms var(--transition-function);
+}
+
+.card-list a:hover .paragraph-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Modal Window */
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.is-hidden .modal{
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.modal-overlay {
+  position: fixed;
+
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+
+  background-color: var(--window-bg-color);
+
+  transition: opacity 250ms var(--transition-function);
+}
+
+.modal-overlay .modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 408px;
+  padding: 72px 24px 24px 24px;
+  min-height: 86px;
+
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  color: var(--customers-icon-color);
+  background-color: var(--modal-bg-color);
+
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transform: translate(-50%, -50%) scale(100%);
+  transition: transform 250ms var(--transition-function) 50ms;
 }
