@@ -29,6 +29,8 @@ body {
 
 header {
   border-bottom: 1px solid #e7e9fc;
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 
 img {
@@ -367,7 +369,8 @@ p {
 
   transition: background-color 250ms var(--transition-function),
     color 250ms var(--transition-function),
-    box-shadow 250ms var(--transition-function);
+    box-shadow 250ms var(--transition-function),
+    border-color 250ms var(--transition-function);
 }
 
 .filter-button:hover,
@@ -473,6 +476,8 @@ p {
   margin-bottom: 8px;
 
   background-color: var(--white-studio-color);
+
+  border-radius: 4px;
 }
 
 .specifics-list .icon-bg {
@@ -634,6 +639,7 @@ p {
 
 .site-nav .current {
   position: relative;
+  color: var(--hover-button-portfolio-background);
 }
 
 .site-nav .current::after {
@@ -671,7 +677,7 @@ p {
   color: var(--white-studio-color);
   background-color: var(--active-color);
 
-line-height: 1.5;
+  line-height: 1.5;
 
   opacity: 0;
 
@@ -680,7 +686,8 @@ line-height: 1.5;
     opacity 500ms var(--transition-function);
 }
 
-.card-list a:hover .paragraph-overlay {
+.card-list a:hover,
+.card-list a:focus .paragraph-overlay {
   transform: translateY(0);
   opacity: 1;
 }
@@ -692,7 +699,7 @@ line-height: 1.5;
   pointer-events: none;
 }
 
-.is-hidden .modal {
+.modal-overlay .is-hidden .modal {
   transform: translate(-50%, -50%) scale(0);
 }
 
@@ -705,7 +712,8 @@ line-height: 1.5;
 
   background-color: var(--window-bg-color);
 
-  transition: opacity 250ms var(--transition-function);
+  transition: opacity 250ms var(--transition-function),
+    visibility 250ms var(--transition-function);
 }
 
 .modal-overlay .modal {
@@ -743,10 +751,21 @@ line-height: 1.5;
   width: 24px;
   height: 24px;
 
+  padding: 0;
+
   background-color: var(--border-portfolio-color);
 
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 
   cursor: pointer;
+
+  transition: fiil 250ms var(--transition-function),
+    background-color 250ms var(--transition-function);
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  fill: var(--white-color);
+  background-color: var(--hover-button-portfolio-background);
 }
