@@ -686,7 +686,7 @@ p {
     opacity 500ms var(--transition-function);
 }
 
-.card-list a:hover,
+.card-list a:hover .paragraph-overlay,
 .card-list a:focus .paragraph-overlay {
   transform: translateY(0);
   opacity: 1;
